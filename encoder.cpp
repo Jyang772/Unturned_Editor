@@ -1,6 +1,7 @@
 #include "encoder.h"
 #include "ui_encoder.h"
 
+#include <iostream>
 #include <string> //for output string
 #include <QDebug> //for debugging
 
@@ -44,13 +45,17 @@ QString Encoder::decrypt(QString input){
 
     QString output;
 
+
     for(int i=input.length() -1; i>=0; i--){
-        output += (char)((input[i].unicode()-32)%255);
+        output += (QChar)((input[i].unicode()-32)%255);
     }
 
-    output = output.mid(2,output.length()-1);
+    //qDebug() << output.mid(2,output.length());
 
-    return output;
+    output.replace("Ý"," ");
+    return output.mid(0,output.length());
+
+
 }
 
 
@@ -61,8 +66,14 @@ QString Encoder::encrypt(QString input){
         QString output;
 
        for(int i=input.length()-1; i>=0; i--){
-            output += (QChar)((input[i].unicode() + 32 + 8160));
-        }
+            output += (QChar)((input[i].unicode()+32+8160));               //x = input[i].unicode
+        }                                                                  // (x + 32 + 255*n) = resulting unicode value
+                                                                           //In Decryption function: (input.unicode[i]) = (x + 32 + 255*n)
+        qDebug() << output;                                                // [(x + 32 + 255*n)-32) % 255] = (x + 255*n) % 255 = result
+                                                                           // result = x, as long as (x + a) where a is a multiple of 255
+                                                                           //May get different characters when encrypted, but the decrypted output should always be the same.
+
+                                                                           //(X+255*n) % 255 = [(X mod 255) + (255*n) mod 255] mod 255
 
 
 
@@ -74,8 +85,7 @@ QString Encoder::encrypt(QString input){
 
 
       output = output.mid(3,output.length());
-      qDebug() << output;
-
+      //qDebug() << output;
 
       return output;
 
