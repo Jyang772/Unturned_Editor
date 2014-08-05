@@ -37,12 +37,10 @@ void Encoder::on_Decrypt_clicked()
 
 QString Encoder::decrypt(QString input){
 
-
     QTextEncoder* encoder = QTextCodec::codecForName("Windows-1252")->makeEncoder(); //Encode in Windows-1252
     QTextDecoder* decoder = QTextCodec::codecForName("UTF-8")->makeDecoder();        //Decode as if it's UTF-8
 
     QByteArray outputData = encoder->fromUnicode(input);
-
     input = decoder->toUnicode(outputData,outputData.length());
 
     QString output;
@@ -87,7 +85,7 @@ QString Encoder::encrypt(QString input){
 
 
       output = output.mid(3,output.length());
-      qDebug() << output;
+      //qDebug() << output;
 
       return output;
 
