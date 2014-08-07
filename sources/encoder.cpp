@@ -77,6 +77,9 @@ QString Encoder::encrypt(QString input){
 
                                                                            //(X+255*n) % 255 = [(X mod 255) + (255*n) mod 255] mod 255
 
+#ifdef Q_OS_MAC
+        return QString("0_8_" + output + "_");
+#endif
 
 
       QTextEncoder* encoder2 = QTextCodec::codecForName("UTF-8")->makeEncoder();

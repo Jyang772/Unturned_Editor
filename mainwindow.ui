@@ -11,13 +11,13 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Unturned Editor</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>110</x>
       <y>100</y>
       <width>151</width>
       <height>32</height>
@@ -30,11 +30,34 @@
    <widget class="QTextBrowser" name="textBrowser">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>60</y>
+      <x>40</x>
+      <y>30</y>
       <width>291</width>
-      <height>31</height>
+      <height>61</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="setInventory">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>140</y>
+      <width>291</width>
+      <height>51</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>200</y>
+      <width>151</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Set Inventory Value</string>
     </property>
    </widget>
   </widget>

@@ -8,6 +8,7 @@
 
 #include <QSettings>
 #include <QDebug>
+#include <QProcess>
 
 namespace Ui {
 class MainWindow;
@@ -27,6 +28,8 @@ private slots:
     void on_actionEncrypter_Decrypter_triggered();
 
     void on_pushButton_clicked();
+
+    void on_pushButton_2_clicked();
 
 private:
     Ui::MainWindow *ui;
