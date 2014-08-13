@@ -9,6 +9,10 @@ TARGET = Unturned_Editor
 INCLUDEPATH += . headers
 
 # Input
-HEADERS += headers/encoder.h headers/mainwindow.h
-FORMS += encoder.ui mainwindow.ui
-SOURCES += sources/encoder.cpp sources/main.cpp sources/mainwindow.cpp
+HEADERS += headers/encoder.h headers/mainwindow.h \
+    headers/currentInventory.h \
+    inventoryedit.h
+FORMS += encoder.ui mainwindow.ui \
+    inventoryedit.ui
+SOURCES += sources/encoder.cpp sources/main.cpp sources/mainwindow.cpp \
+    inventoryedit.cpp
