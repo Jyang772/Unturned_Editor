@@ -4,6 +4,7 @@
 
 QT += core gui widgets
 
+
 TEMPLATE = app
 TARGET = Unturned_Editor
 INCLUDEPATH += . headers
@@ -11,8 +12,18 @@ INCLUDEPATH += . headers
 # Input
 HEADERS += headers/encoder.h headers/mainwindow.h \
     headers/currentInventory.h \
-    inventoryedit.h
+    inventoryedit.h \
+    sources/items.h \
+    headers/items.h \
+    headers/delete.h \
+    headers/attachments.h \
+    headers/openinventory.h
 FORMS += encoder.ui mainwindow.ui \
-    inventoryedit.ui
+    inventoryedit.ui \
+    sources/attachments.ui \
+    sources/openinventory.ui
 SOURCES += sources/encoder.cpp sources/main.cpp sources/mainwindow.cpp \
-    inventoryedit.cpp
+    inventoryedit.cpp \
+    sources/items.cpp \
+    sources/attachments.cpp \
+    sources/openinventory.cpp

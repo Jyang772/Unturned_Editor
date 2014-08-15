@@ -20,6 +20,9 @@ class InventoryEdit : public QDialog
 public:
     explicit InventoryEdit(QWidget *parent = 0);
     ~InventoryEdit();
+    QString inventoryValue; //Value extracted from registry
+
+    void getValue();
 
 private slots:
     void on_pushButton_clicked();
@@ -30,7 +33,7 @@ private:
     Ui::InventoryEdit *ui;
 
     CurrentInventory test;
-    QString inventoryValue; //Value extracted from registry
+   // QString inventoryValue; //Value extracted from registry
 
 };
 

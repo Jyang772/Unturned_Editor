@@ -86,3 +86,7 @@ void InventoryEdit::on_pushButton_2_clicked()
 
     settings.setValue(inventory.first(),ui->setInventory->toPlainText());
 }
+
+void InventoryEdit::getValue(){
+    on_pushButton_clicked();
+}

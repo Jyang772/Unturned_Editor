@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>528</width>
-    <height>421</height>
+    <width>580</width>
+    <height>430</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -25,13 +25,85 @@
     </property>
     <layout class="QGridLayout" name="gridLayout"/>
    </widget>
+   <widget class="QListWidget" name="listWidget">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>10</y>
+      <width>171</width>
+      <height>311</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spinBox">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>330</y>
+      <width>49</width>
+      <height>24</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>330</y>
+      <width>91</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Item Amount: </string>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="attachments">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>330</y>
+      <width>121</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Attachments</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="toggle">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>350</y>
+      <width>87</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Toggle On</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>350</y>
+      <width>91</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>MicroPenguin</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>528</width>
+     <width>580</width>
      <height>22</height>
     </rect>
    </property>
@@ -44,6 +116,8 @@
     </property>
     <addaction name="actionEncrypter_Decrypter"/>
     <addaction name="actionInventory_Editor"/>
+    <addaction name="actionSave_Inventory"/>
+    <addaction name="actionOpen_Inventory"/>
    </widget>
    <addaction name="menuTools"/>
   </widget>
@@ -64,6 +138,16 @@
   <action name="actionInventory_Editor">
    <property name="text">
     <string>Inventory Editor</string>
+   </property>
+  </action>
+  <action name="actionSave_Inventory">
+   <property name="text">
+    <string>Save Inventory</string>
+   </property>
+  </action>
+  <action name="actionOpen_Inventory">
+   <property name="text">
+    <string>Open Inventory</string>
    </property>
   </action>
  </widget>
