@@ -33,6 +33,7 @@ qDebug() << weapon;
     ui->barrel->setCurrentText("No Barrel");  //DEFAULT
     ui->sight->setCurrentText("No Sight");
     ui->magazine->clear();
+    ui->mode->clear();
 
                     if (weapon == "berette")
                        {
@@ -116,6 +117,7 @@ qDebug() << weapon;
                     else if (weapon == "zubeknakov"){
                         ui->mode->addItem("Semi");
                         ui->mode->addItem("Safety");
+                        ui->mode->addItem("Auto");
                         ui->magazine->addItem("Savage Magazine");
                         ui->magazine->addItem("Savage Drum");
                         ui->ammo->setMaximum(75);
@@ -230,6 +232,7 @@ void Attachments::on_buttonBox_accepted()
 
 void Attachments::readAttache(QStringList list){
 
+//When attachments dialog is open. Load attachments from itembox.
 
     //attachments = list;
     if(list.isEmpty())

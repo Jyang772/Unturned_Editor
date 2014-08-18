@@ -106,6 +106,7 @@ private:
 
 
     QString testInventory; //Inventory selected by user
+    QString saveString;    //New Saved Inventory
 
 };
 

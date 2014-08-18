@@ -13,8 +13,9 @@ MainWindow::MainWindow(QWidget *parent) :
         QString text = "";
         //text.append(QString::number(i));
         qDebug() << i;
-        itemButtons[i] = createButton(text, SLOT(itemClicked()));
+        itemButtons[i] = createButton(text, SLOT(itemClicked()));  //connect signal to SLOT(ItemClicked)
         itemButtons[i]->setObjectName(QString::number(i));
+        itemButtons[i]->setEnabled(false);
         }
 
     //Display buttons in rows/columns
@@ -65,7 +66,7 @@ QPushButton *MainWindow::createButton(QString &text, const char *member){
     button->setCheckable(true);
     button->setAutoExclusive(true);
 
-    connect(button, SIGNAL(clicked()),this,member);
+    connect(button, SIGNAL(clicked()),this,member); //connect button signal to SLOT(itemClicked)
     return button;
 }
 
@@ -111,7 +112,7 @@ void MainWindow::itemClicked(){
         ui->toggle->setChecked(false);
         ui->spinBox->setEnabled(true);}
 
-    qDebug() << items.isWeapon(item);
+    //qDebug() << items.isWeapon(item);
 
 }
 
@@ -150,9 +151,6 @@ void MainWindow::on_listWidget_itemClicked(QListWidgetItem *item)
 
 void MainWindow::on_spinBox_valueChanged(int arg1)
 {
-//    QString existingText = clickedItem->text().mid(0, clickedItem->text().indexOf('x')-1);
-//    if(existingText != NULL)
-//    clickedItem->setText(existingText + " x" + ui->spinBox->text());
     if(clickedItem->text() != NULL)
         clickedItem->setText(clickedItem->text().mid(0,clickedItem->text().indexOf('x')-1) + " x" + ui->spinBox->text());
 }
@@ -176,7 +174,7 @@ void MainWindow::on_toggle_clicked()
 void MainWindow::on_actionSave_Inventory_triggered()
 {
 
-    QString itemName, toggle, fill, saveString;
+    QString itemName, toggle, fill;
     int itemID, itemAmount;
 
 
@@ -195,7 +193,12 @@ void MainWindow::on_actionSave_Inventory_triggered()
         if(items.isWeapon(itemName)){
             qDebug() << "ISWEAPON";
             //Process Attachments (move to different function)
+            if(!attache[i].isEmpty()) //Check if attachments are empty
             addItems << processAttache(attache[i], itemName, true);
+            else{
+                //If attachments hasn't been open, this is the default value.
+                attache[i] << "0" << "0" << "-1" << "-1" << "-1" << "Safety" << "n";
+                addItems << processAttache(attache[i],itemName,true);}
 
         }
 
@@ -209,7 +212,7 @@ void MainWindow::on_actionSave_Inventory_triggered()
                 toggle = "e";
             addItems << QString::number(itemID) + ":" + QString::number(itemAmount) + ":" + toggle + ":;";
 
-        qDebug() << "5;5;17500;8002:1::;10002:8::;20000:1:f:;8008:1:b:;7001:1:4_10002_-1_-1_-1_0_y_:;-1:0::;-1:0::;-1:0::;-1:0::;-1:0::;-1:0::;-1:0::;-1:0::;-1:0::;-1:0::;-1:0::;-1:0::;-1:0::;-1:0::;-1:0::;-1:0::;-1:0::;-1:0::;-1:0::;-1:0::;";
+        //qDebug() << "5;5;17500;8002:1::;10002:8::;20000:1:f:;8008:1:b:;7001:1:4_10002_-1_-1_-1_0_y_:;-1:0::;-1:0::;-1:0::;-1:0::;-1:0::;-1:0::;-1:0::;-1:0::;-1:0::;-1:0::;-1:0::;-1:0::;-1:0::;-1:0::;-1:0::;-1:0::;-1:0::;-1:0::;-1:0::;-1:0::;";
 
         }
 
@@ -224,7 +227,8 @@ void MainWindow::on_actionSave_Inventory_triggered()
         else
          addItems << QString::number(itemID) + ":" + QString::number(itemAmount) + "::;";
      }
-     addItems.prepend("5;5;17500;");
+
+     addItems.prepend("5;5;17500;");   //Prepend backpack
      qDebug() << addItems.join("");
 
      saveString = addItems.join("");
@@ -246,6 +250,7 @@ void MainWindow::mainGrid(){
     qDebug() << "MainGrid: " << testInventory;
 
     for(int i=1;i<10;i++){
+        itemButtons[i]->setEnabled(true);
         itemButtons[i]->setText("");
         attache[i].clear();}
     //Get Inventory key value, and display contents on grid
@@ -280,7 +285,7 @@ void MainWindow::mainGrid(){
 
         //qDebug() << output;
         itemAmount = output.mid(0,output.indexOf(":"));
-        qDebug() << "ITEM AMOUNT: " << itemAmount;
+        //qDebug() << "ITEM AMOUNT: " << itemAmount;
         //qDebug() << itemAmount;
 
         output = output.mid(output.indexOf(":")+1,output.length());
@@ -293,8 +298,9 @@ void MainWindow::mainGrid(){
 
             //attachments->readAttache(parts);   //Process list and output to member QString "attachments"
 
-            attachments->attachments = readAttache(parts);
-            attache[i] = attachments->attachments;
+//            attachments->attachments = readAttache(parts);
+//            attache[i] = attachments->attachments;
+            attache[i] = readAttache(parts);
 
 
         }
@@ -346,6 +352,7 @@ void MainWindow::readAttachments(){
 
 QString MainWindow::processAttache(QStringList list, QString name, bool openInv){
 
+
     qDebug() << "LIST: " << list;
     QString bullets = list.at(0);
     QString magazine = list.at(1);
@@ -373,10 +380,11 @@ QString MainWindow::processAttache(QStringList list, QString name, bool openInv)
     qDebug() << "Result: " << result;
     return result;
 
-
 }
 
 QStringList MainWindow::readAttache(QStringList list){
+
+    //Read attachments detail from inventory save
 
     QStringList result;
     QString bullets = list.at(0);
@@ -393,3 +401,4 @@ QStringList MainWindow::readAttache(QStringList list){
     qDebug() << "RESULT-MAIN: " << result;
     return result;
 }
+

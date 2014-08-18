@@ -15,7 +15,6 @@ HEADERS += headers/encoder.h headers/mainwindow.h \
     inventoryedit.h \
     sources/items.h \
     headers/items.h \
-    headers/delete.h \
     headers/attachments.h \
     headers/openinventory.h
 FORMS += encoder.ui mainwindow.ui \
