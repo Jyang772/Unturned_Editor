@@ -15,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
         qDebug() << i;
         itemButtons[i] = createButton(text, SLOT(itemClicked()));  //connect signal to SLOT(ItemClicked)
         itemButtons[i]->setObjectName(QString::number(i));
-        itemButtons[i]->setEnabled(false);
+        //itemButtons[i]->setEnabled(false);
         }
 
     //Display buttons in rows/columns
@@ -49,7 +49,6 @@ void MainWindow::on_actionEncrypter_Decrypter_triggered()
     r2d2.show();
 }
 
-
 void MainWindow::on_actionInventory_Editor_triggered()
 { //Show Inventory Editor window
     c3p0.show();
@@ -58,6 +57,7 @@ void MainWindow::on_actionInventory_Editor_triggered()
 }
 
 
+//Creating each itemBox button and connecting clicked signal
 QPushButton *MainWindow::createButton(QString &text, const char *member){
 
     QPushButton *button = new QPushButton();
@@ -66,7 +66,7 @@ QPushButton *MainWindow::createButton(QString &text, const char *member){
     button->setCheckable(true);
     button->setAutoExclusive(true);
 
-    connect(button, SIGNAL(clicked()),this,member); //connect button signal to SLOT(itemClicked)
+    connect(button, SIGNAL(clicked()),this,member); //connect each button signal to SLOT(itemClicked)
     return button;
 }
 
@@ -116,6 +116,7 @@ void MainWindow::itemClicked(){
 
 }
 
+//Dealing with ListWidget and SearchBar
 void MainWindow::on_listWidget_itemClicked(QListWidgetItem *item)
 {
     QString currentItem = ui->listWidget->currentItem()->text();
@@ -148,6 +149,32 @@ void MainWindow::on_listWidget_itemClicked(QListWidgetItem *item)
 
 }
 
+void MainWindow::searchForString(QString item){
+
+
+       // QStringList my_found_items;
+
+        for( int i = 0; i < items.allItems.count(); i++ )
+        {
+            QString current = items.allItems.at(i);
+            if( current.toLower().contains(item) )
+            {
+                foundItems.append(current);
+            }
+        }
+
+    qDebug() << "Found ITEMS: " << foundItems;
+
+}
+
+void MainWindow::on_lineEdit_textEdited(const QString &arg1)
+{
+    foundItems.clear();
+    searchForString(ui->lineEdit->text());
+    ui->listWidget->clear();
+    ui->listWidget->addItems(foundItems);
+
+}
 
 void MainWindow::on_spinBox_valueChanged(int arg1)
 {
@@ -171,6 +198,7 @@ void MainWindow::on_toggle_clicked()
 
 }
 
+//Dealing with Opening/Saving Inventory and displaying it
 void MainWindow::on_actionSave_Inventory_triggered()
 {
 
@@ -236,7 +264,6 @@ void MainWindow::on_actionSave_Inventory_triggered()
      solo->saveInventory(saveString);
 }
 
-
 void MainWindow::on_actionOpen_Inventory_triggered()
 {
 
@@ -268,7 +295,7 @@ void MainWindow::mainGrid(){
     tempExtract = testInventory;
 
     for(int i=0; i<3;i++)
-    tempExtract =  tempExtract.mid(tempExtract.indexOf(";")+1, tempExtract.length());
+    tempExtract =  tempExtract.mid(tempExtract.indexOf(";")+1, tempExtract.length()); //Remove backpack component
     qDebug() << tempExtract;
 
 
@@ -294,12 +321,7 @@ void MainWindow::mainGrid(){
             itemButtons[i]->setText(item + " x" + itemAmount);    //("4", "10002", "-1", "-1", "-1", "0", "y", ":;")
             parts = output.split("_");
             qDebug() << parts;
-            //reverse parts
 
-            //attachments->readAttache(parts);   //Process list and output to member QString "attachments"
-
-//            attachments->attachments = readAttache(parts);
-//            attache[i] = attachments->attachments;
             attache[i] = readAttache(parts);
 
 
@@ -333,6 +355,8 @@ void MainWindow::mainGrid(){
 
 }
 
+
+//Dealing with Weapon Attachments
 void MainWindow::on_attachments_clicked()
 {
     attachments->show();
@@ -341,17 +365,15 @@ void MainWindow::on_attachments_clicked()
 
 }
 
-
 void MainWindow::readAttachments(){
-    //clickedItem->attachments = attachments->attachments;
-
+        //When all_clear() is emitted, we save the edited attachments back to the itemBox attache component
     attache[clickedItem->objectName().toInt()] = attachments->attachments; //lol
-
 
 }
 
 QString MainWindow::processAttache(QStringList list, QString name, bool openInv){
 
+    //Process current attachments for saving
 
     qDebug() << "LIST: " << list;
     QString bullets = list.at(0);
@@ -401,4 +423,3 @@ QStringList MainWindow::readAttache(QStringList list){
     qDebug() << "RESULT-MAIN: " << result;
     return result;
 }
-

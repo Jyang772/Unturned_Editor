@@ -42,9 +42,9 @@ public:
     ~MainWindow();
 
     void readRegistry();
+    void searchForString(QString);       //Search for items by search bar
     QString processAttache(QStringList, QString, bool);
     QStringList readAttache(QStringList);
-
 
 private slots:
 
@@ -70,6 +70,8 @@ private slots:
 
     void mainGrid();
 
+    void on_lineEdit_textEdited(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     Encoder r2d2;
@@ -92,6 +94,8 @@ private:
     QString inventoryValue; //Value extracted from registry
     CurrentInventory test;
 
+    //Search bar
+    QStringList foundItems;
 
     //Grid Layout
     QPushButton *createButton(QString &text, const char *member);
