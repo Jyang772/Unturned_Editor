@@ -15,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
         qDebug() << i;
         itemButtons[i] = createButton(text, SLOT(itemClicked()));  //connect signal to SLOT(ItemClicked)
         itemButtons[i]->setObjectName(QString::number(i));
-        //itemButtons[i]->setEnabled(false);
+        itemButtons[i]->setEnabled(false);
         }
 
     //Display buttons in rows/columns
