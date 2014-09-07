@@ -65,12 +65,11 @@ void openInventory::saveInventory(QString value){
 }
 
 void openInventory::on_buttonBox_accepted()
-{    
-    if(ui->inventoryList->count() != 0){
+{
+
     invValue = decrypted_keys.at(ui->inventoryList->currentRow());
     qDebug() << "invValue: " << invValue;
     key_selected = ui->inventoryList->currentItem()->text();
     emit accepted();
-    }
 
 }
