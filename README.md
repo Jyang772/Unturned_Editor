@@ -14,3 +14,10 @@ Contributing:
 3. **Submit a pull request.**
 
 
+
+
+Building
+============
+
+1. Run `Make`
+
