@@ -19,5 +19,5 @@ Contributing:
 Building
 ============
 
-1. Run `Make`
+1. Run `./Make`
 
