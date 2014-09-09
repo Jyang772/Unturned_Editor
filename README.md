@@ -1,6 +1,7 @@
 Unturned_Editor
 ===============
 
+[![Build Status](https://travis-ci.org/Jyang772/Unturned_Editor.svg?branch=master)](https://travis-ci.org/Jyang772/Unturned_Editor)
 
 This is a save game editor for Unturned. The current platforms that this has been compiled and built for are Mac OSX and Linux.
 
