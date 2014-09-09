@@ -33,7 +33,7 @@ private:
     QString path, username;
     QStringList keys, decrypted_keys;
     QString key_selected;
-    constexpr Encoder *r2d2 = new Encoder; //(); //this
+    Encoder *r2d2; // = new Encoder; //(); //this
 };
 
 #endif // OPENINVENTORY_H
