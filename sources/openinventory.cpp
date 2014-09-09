@@ -8,6 +8,7 @@ openInventory::openInventory(QWidget *parent) :
     ui(new Ui::openInventory)
 {
     ui->setupUi(this);
+    r2d2 = new Encoder;
     //update();
 }
 
