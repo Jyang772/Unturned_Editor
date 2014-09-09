@@ -74,8 +74,8 @@ private:
     Ui::MainWindow *ui;
     Encoder r2d2;
     InventoryEdit c3p0;
-    Attachments *attachments = new Attachments(); //this
-    openInventory *solo = new openInventory();    //this
+    Attachments *attachments = new Attachments(this); //this
+    openInventory *solo = new openInventory(this);    //this
 
     Items items;
     QStringList listing;
