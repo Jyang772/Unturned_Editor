@@ -15,7 +15,7 @@ class openInventory : public QDialog
     Q_OBJECT
 
 public:
-    explicit openInventory(QWidget *parent = 0);
+    explicit openInventory(); // QWidget *parent = 0
     ~openInventory();
 
     QString invValue;
