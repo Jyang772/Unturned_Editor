@@ -2,6 +2,7 @@
 #define ITEMS_H
 
 #include <QString>
+#include <QStringList>
 #include <QFile>
 #include <QTextStream>
 #include <QDebug>
