@@ -37,6 +37,8 @@ void Encoder::on_Decrypt_clicked()
 
 QString Encoder::decrypt(QString input){
 
+input.remove(0,4); // Remove the n_n_ at the beginning, this is just used for recognizing types
+input.remove(input.length()-1,1); // Remove the _ at the end, this is also not part of the original string
 
 #ifndef Q_OS_MAC
     QTextEncoder* encoder = QTextCodec::codecForName("Windows-1252")->makeEncoder(); //Encode in Windows-1252
