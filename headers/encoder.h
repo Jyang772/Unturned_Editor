@@ -13,7 +13,7 @@ class Encoder : public QDialog
     Q_OBJECT
 
 public:
-    explicit Encoder(QWidget *parent = 0);
+    Encoder(QWidget *parent = 0);
     QString decrypt(QString);
     QString encrypt(QString);
 

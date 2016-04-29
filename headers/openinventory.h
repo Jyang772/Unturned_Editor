@@ -15,7 +15,7 @@ class openInventory : public QDialog
     Q_OBJECT
 
 public:
-    explicit openInventory(QWidget *parent = 0);
+    explicit openInventory(QWidget *parent = 0); // QWidget *parent = 0
     ~openInventory();
 
     QString invValue;
@@ -33,7 +33,7 @@ private:
     QString path, username;
     QStringList keys, decrypted_keys;
     QString key_selected;
-    Encoder *r2d2 = new Encoder(this);
+    Encoder *r2d2; // = new Encoder; //(); //this
 };
 
 #endif // OPENINVENTORY_H

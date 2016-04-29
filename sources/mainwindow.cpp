@@ -6,6 +6,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    attachments = new Attachments; //this
+    solo = new openInventory;    //this
+    
     menuBar()->isNativeMenuBar();
 
     //Create buttons with text in array
